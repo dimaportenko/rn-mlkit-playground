@@ -8,6 +8,8 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
+  NativeModule,
+  NativeModules,
 } from 'react-native';
 import {DemoButton, DemoResponse} from './src/components';
 import * as ImagePicker from 'react-native-image-picker';
@@ -26,6 +28,12 @@ export const App = () => {
       ImagePicker.launchImageLibrary(options, setResponse);
     }
   }, []);
+
+  React.useEffect(() => {
+    if (response) {
+      NativeModules.MLKitModule.recognizeText(response?.assets?.[0]?.uri);
+    }
+  }, [response]);
 
   return (
     <View style={{flex: 1}}>
