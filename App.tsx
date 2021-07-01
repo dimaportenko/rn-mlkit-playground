@@ -8,12 +8,12 @@ import {
   Image,
   StyleSheet,
   useWindowDimensions,
-  NativeModule,
   NativeModules,
 } from 'react-native';
 import {DemoButton, DemoResponse} from './src/components';
 import * as ImagePicker from 'react-native-image-picker';
 import {ImagePickerResponse} from 'react-native-image-picker/src/types';
+import { recognizeText } from "./src/mlkit";
 
 export const App = () => {
   const {width} = useWindowDimensions();
@@ -29,9 +29,14 @@ export const App = () => {
     }
   }, []);
 
+  const proccessImage = async (uri: string) => {
+    const response = await recognizeText(uri);
+    console.warn('response ', response);
+  };
+
   React.useEffect(() => {
     if (response) {
-      NativeModules.MLKitModule.recognizeText(response?.assets?.[0]?.uri);
+      proccessImage(response?.assets?.[0]?.uri!!);
     }
   }, [response]);
 
