@@ -8,7 +8,7 @@ type Rect = {
   right: number;
 };
 
-type Block = {
+export type Block = {
   text: string;
   rect: Rect;
   lines: Line[];
@@ -19,10 +19,12 @@ type Line = {
   rect: Rect;
 };
 
-type Response = {
+export type RecognizeTextResponse = {
   blocks: Block[];
 };
 
-export const recognizeText = (uri: string): Promise<Response | Error> => {
+export const recognizeText = (
+  uri: string,
+): Promise<RecognizeTextResponse> => {
   return MLKitModule.recognizeText(uri);
 };
