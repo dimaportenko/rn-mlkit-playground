@@ -2,7 +2,7 @@
  * Created by Dima Portenko on 05.07.2021
  */
 import React, {useEffect, useState} from 'react';
-import {View, Image} from 'react-native';
+import {Image, useWindowDimensions, ScrollView} from 'react-native';
 import {
   ProcessImageNavigationProps,
   ProcessImageRouteProps,
@@ -16,11 +16,15 @@ interface ProcessImageScreenProps {
 }
 
 export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
+  const {width: windowWidth, height: windowHeight} = useWindowDimensions();
+  const [aspectRatio, setAspectRation] = useState(1);
   const [response, setResponse] = useState<RecognizeTextResponse | undefined>(
     undefined,
   );
   const [size, setSize] = useState<Size>({width: 0, height: 0});
   const uri = route.params.uri;
+
+  console.warn('scale', size.width / (windowWidth || 1));
 
   useEffect(() => {
     if (uri) {
@@ -30,6 +34,7 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
           width,
           height,
         });
+        setAspectRation(height / width);
       });
     }
   }, [uri]);
@@ -39,13 +44,21 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
     if (response?.blocks) {
       setResponse(response);
     }
-    console.warn('response ', response);
+    // console.warn('response ', response);
   };
 
   return (
-    <View style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
-      <Image source={{uri}} style={{width: '100%', height: '100%'}} />
-      <ResponseRenderer response={response} imageSize={size} />
-    </View>
+    <ScrollView style={{flex: 1}}>
+      <Image
+        source={{uri}}
+        style={{width: windowWidth, height: windowWidth * aspectRatio}}
+        resizeMode="cover"
+      />
+      <ResponseRenderer
+        response={response}
+        // scale={windowWidth / (size.width || 1)}
+        scale={windowWidth / (size.width || 1)}
+      />
+    </ScrollView>
   );
 };

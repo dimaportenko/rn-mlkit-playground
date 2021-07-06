@@ -2,12 +2,12 @@
  * Created by Dima Portenko on 05.07.2021
  */
 import React, {useEffect, useState} from 'react';
-import {LayoutChangeEvent, StyleSheet, View} from 'react-native';
-import {Block, RecognizeTextResponse} from '../mlkit';
+import {LayoutChangeEvent, StyleSheet, View, Text} from 'react-native';
+import {Block, Line, RecognizeTextResponse} from '../mlkit';
 
 interface ResponseRendererProps {
   response?: RecognizeTextResponse;
-  imageSize: Size;
+  scale: number;
 }
 
 export type Size = {
@@ -15,51 +15,38 @@ export type Size = {
   height: number;
 };
 
-export const ResponseRenderer = ({
-  response,
-  imageSize,
-}: ResponseRendererProps) => {
-  const [size, setSize] = useState<Size>({width: 0, height: 0});
-  const [scale, setScale] = useState<number>(0);
-
-  const onLayout = (event: LayoutChangeEvent) => {
-    setSize({
-      width: event.nativeEvent.layout.width,
-      height: event.nativeEvent.layout.height,
-    });
-  };
-
-  useEffect(() => {
-    if (imageSize.width > 0) {
-      setScale(size.width / imageSize.width);
-    }
-  }, [imageSize, size]);
-
+export const ResponseRenderer = ({response, scale}: ResponseRendererProps) => {
   return (
     <View
-      style={{...StyleSheet.absoluteFillObject, backgroundColor: 'transparent'}}
-      onLayout={onLayout}>
+      style={{
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'transparent',
+      }}>
       {response?.blocks.map(block => {
-        return <BlockComponent block={block} scale={scale} />;
+        return block.lines.map((line, index) => {
+          return (
+            <BlockComponent block={line} scale={scale} key={`key${index}`} />
+          );
+        });
       })}
     </View>
   );
 };
 
 type BlockProps = {
-  block: Block;
+  block: Block | Line;
   scale: number;
 };
 
 export const BlockComponent = ({block, scale}: BlockProps) => {
   const rect = {
     top: block.rect.top * scale,
-    bottom: block.rect.bottom * scale,
+    width: block.rect.width * scale,
     left: block.rect.left * scale,
-    right: block.rect.right * scale,
+    height: block.rect.height * scale,
   };
 
-  console.warn('rect', rect);
+  console.warn('rect', rect, block.rect, scale);
 
   return (
     <View
@@ -68,7 +55,8 @@ export const BlockComponent = ({block, scale}: BlockProps) => {
         ...rect,
         borderWidth: 1,
         borderColor: 'red',
-      }}
-    />
+      }}>
+      <Text style={{color: 'blue'}}>{block.text}</Text>
+    </View>
   );
 };

@@ -42,10 +42,10 @@ public class MLKitModule extends ReactContextBaseJavaModule {
     public WritableMap getMapFromRect(Rect rect) {
         WritableMap blockRect = Arguments.createMap();
 
-        blockRect.putDouble("bottom", rect.bottom);
+        blockRect.putDouble("height", (rect.bottom - rect.top));
         blockRect.putDouble("top", rect.top);
         blockRect.putDouble("left", rect.left);
-        blockRect.putDouble("right", rect.right);
+        blockRect.putDouble("width", (rect.right - rect.left) );
 
         return blockRect;
     }

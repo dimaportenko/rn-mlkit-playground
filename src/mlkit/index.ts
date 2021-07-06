@@ -2,10 +2,10 @@ import {NativeModules} from 'react-native';
 const {MLKitModule} = NativeModules;
 
 type Rect = {
-  top: number;
-  bottom: number;
   left: number;
-  right: number;
+  top: number;
+  height: number;
+  width: number;
 };
 
 export type Block = {
@@ -14,7 +14,7 @@ export type Block = {
   lines: Line[];
 };
 
-type Line = {
+export type Line = {
   text: string;
   rect: Rect;
 };
