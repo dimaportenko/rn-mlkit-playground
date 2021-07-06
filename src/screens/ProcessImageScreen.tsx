@@ -16,7 +16,7 @@ interface ProcessImageScreenProps {
 }
 
 export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
-  const {width: windowWidth, height: windowHeight} = useWindowDimensions();
+  const {width: windowWidth} = useWindowDimensions();
   const [aspectRatio, setAspectRation] = useState(1);
   const [response, setResponse] = useState<RecognizeTextResponse | undefined>(
     undefined,

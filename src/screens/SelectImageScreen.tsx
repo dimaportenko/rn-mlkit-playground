@@ -34,19 +34,13 @@ export const SelectImageScreen = ({navigation}: SelectImageScreenProps) => {
     }
   }, []);
 
-  const proccessImage = async (uri: string) => {
-    navigation.navigate(routes.PROCESS_IMAGE_SCREEN, {
-      uri,
-    });
-    // const response = await recognizeText(uri);
-    // console.warn('response ', response);
-  };
-
   React.useEffect(() => {
     if (response) {
-      proccessImage(response?.assets?.[0]?.uri!!);
+      navigation.navigate(routes.PROCESS_IMAGE_SCREEN, {
+        uri: response?.assets?.[0]?.uri!!,
+      });
     }
-  }, [response]);
+  }, [response, navigation]);
 
   return (
     <View style={{flex: 1}}>

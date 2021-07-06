@@ -23,8 +23,6 @@ export type RecognizeTextResponse = {
   blocks: Block[];
 };
 
-export const recognizeText = (
-  uri: string,
-): Promise<RecognizeTextResponse> => {
+export const recognizeText = (uri: string): Promise<RecognizeTextResponse> => {
   return MLKitModule.recognizeText(uri);
 };

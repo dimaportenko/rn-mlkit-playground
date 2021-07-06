@@ -1,8 +1,8 @@
 /**
  * Created by Dima Portenko on 05.07.2021
  */
-import React, {useEffect, useState} from 'react';
-import {LayoutChangeEvent, StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import {Block, Line, RecognizeTextResponse} from '../mlkit';
 
 interface ResponseRendererProps {
