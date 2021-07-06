@@ -24,7 +24,7 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
   const [size, setSize] = useState<Size>({width: 0, height: 0});
   const uri = route.params.uri;
 
-  console.warn('scale', size.width / (windowWidth || 1));
+  console.warn('scale', windowWidth / (size.width || 1));
 
   useEffect(() => {
     if (uri) {
