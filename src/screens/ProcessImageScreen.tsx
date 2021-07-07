@@ -8,7 +8,7 @@ import {
   ProcessImageRouteProps,
 } from '../navigation/Navigator';
 import {recognizeText, RecognizeTextResponse} from '../mlkit';
-import {ResponseRenderer, Size} from '../components/ResponseRenderer';
+import {ResponseRenderer} from '../components/ResponseRenderer';
 
 interface ProcessImageScreenProps {
   navigation: ProcessImageNavigationProps;
@@ -21,21 +21,11 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
   const [response, setResponse] = useState<RecognizeTextResponse | undefined>(
     undefined,
   );
-  const [size, setSize] = useState<Size>({width: 0, height: 0});
   const uri = route.params.uri;
-
-  console.warn('scale', windowWidth / (size.width || 1));
 
   useEffect(() => {
     if (uri) {
       proccessImage(uri);
-      Image.getSize(uri, (width, height) => {
-        setSize({
-          width,
-          height,
-        });
-        setAspectRation(height / width);
-      });
     }
   }, [uri]);
 
@@ -43,8 +33,8 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
     const response = await recognizeText(url);
     if (response?.blocks) {
       setResponse(response);
+      setAspectRation(response.height / response.width);
     }
-    // console.warn('response ', response);
   };
 
   return (
@@ -56,8 +46,7 @@ export const ProcessImageScreen = ({route}: ProcessImageScreenProps) => {
       />
       <ResponseRenderer
         response={response}
-        // scale={windowWidth / (size.width || 1)}
-        scale={windowWidth / (size.width || 1)}
+        scale={windowWidth / (response?.width || 1)}
       />
     </ScrollView>
   );

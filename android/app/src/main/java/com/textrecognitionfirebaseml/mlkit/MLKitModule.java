@@ -71,6 +71,9 @@ public class MLKitModule extends ReactContextBaseJavaModule {
 
                             String resultText = result.getText();
                             WritableMap response = Arguments.createMap();
+                            response.putInt("width", image.getWidth());
+                            response.putInt("height", image.getHeight());
+
                             WritableArray blocks = Arguments.createArray();
                             for (Text.TextBlock block : result.getTextBlocks()) {
                                 WritableArray lines = Arguments.createArray();

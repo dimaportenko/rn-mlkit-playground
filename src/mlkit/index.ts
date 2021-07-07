@@ -21,6 +21,8 @@ export type Line = {
 
 export type RecognizeTextResponse = {
   blocks: Block[];
+  width: number;
+  height: number;
 };
 
 export const recognizeText = (uri: string): Promise<RecognizeTextResponse> => {
