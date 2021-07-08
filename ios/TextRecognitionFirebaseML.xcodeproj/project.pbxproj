@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		222026D69711A69BFB0811BA /* libPods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76ABAAADF5F79AE640B5EACF /* libPods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.a */; };
+		66C3959F2696FEED000327E5 /* RCTMLKitModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C3959E2696FEED000327E5 /* RCTMLKitModule.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AA790826122B979316A0BCAC /* libPods-TextRecognitionFirebaseML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E5D73757B875278336F8B9 /* libPods-TextRecognitionFirebaseML.a */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,8 @@
 		1A17AA79A693107B430DFC6F /* Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.release.xcconfig"; path = "Target Support Files/Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests/Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.release.xcconfig"; sourceTree = "<group>"; };
 		3176363343DB5286CBDD3FC1 /* Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.debug.xcconfig"; path = "Target Support Files/Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests/Pods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5ABA46DFDDA7CB6A75126DE2 /* Pods-TextRecognitionFirebaseML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRecognitionFirebaseML.release.xcconfig"; path = "Target Support Files/Pods-TextRecognitionFirebaseML/Pods-TextRecognitionFirebaseML.release.xcconfig"; sourceTree = "<group>"; };
+		66C3959D2696FD11000327E5 /* RCTMLKitModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTMLKitModule.h; sourceTree = "<group>"; };
+		66C3959E2696FEED000327E5 /* RCTMLKitModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTMLKitModule.m; sourceTree = "<group>"; };
 		76ABAAADF5F79AE640B5EACF /* libPods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A85A66DA150977BE4B13092 /* Pods-TextRecognitionFirebaseML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRecognitionFirebaseML.debug.xcconfig"; path = "Target Support Files/Pods-TextRecognitionFirebaseML/Pods-TextRecognitionFirebaseML.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TextRecognitionFirebaseML/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 		13B07FAE1A68108700A75B9A /* TextRecognitionFirebaseML */ = {
 			isa = PBXGroup;
 			children = (
+				66C3959C2696FC48000327E5 /* MLKit */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -104,6 +108,15 @@
 				76ABAAADF5F79AE640B5EACF /* libPods-TextRecognitionFirebaseML-TextRecognitionFirebaseMLTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66C3959C2696FC48000327E5 /* MLKit */ = {
+			isa = PBXGroup;
+			children = (
+				66C3959D2696FD11000327E5 /* RCTMLKitModule.h */,
+				66C3959E2696FEED000327E5 /* RCTMLKitModule.m */,
+			);
+			path = MLKit;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -410,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C3959F2696FEED000327E5 /* RCTMLKitModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
